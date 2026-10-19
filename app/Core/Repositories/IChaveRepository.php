@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Contracts\Repositories;
+namespace App\Core\Repositories;
 
 use App\Core\Entities\Chave;
 
