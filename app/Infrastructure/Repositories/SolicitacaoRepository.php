@@ -78,6 +78,32 @@ class SolicitacaoRepository implements ISolicitacaoRepository
             ->delete(self::TABELA);
     }
 
+    public function buscarEmprestimoAtivoDoAluno(string $alunoId): ?Solicitacao
+    {
+        $linhas = $this->supabase->request()
+            ->get(self::TABELA, [
+                'aluno_id' => "eq.{$alunoId}",
+                'status' => 'eq.aprovada',
+                'devolvida_em' => 'is.null',
+                'limit' => 1,
+            ])
+            ->json();
+
+        return $linhas ? $this->mapear($linhas[0]) : null;
+    }
+
+    public function buscarEmprestimosAtivos(): array
+    {
+        $linhas = $this->supabase->request()
+            ->get(self::TABELA, [
+                'status' => 'eq.aprovada',
+                'devolvida_em' => 'is.null',
+            ])
+            ->json();
+
+        return array_map(fn (array $l) => $this->mapear($l), $linhas);
+    }
+
     private function paraArray(Solicitacao $s): array
     {
         return [

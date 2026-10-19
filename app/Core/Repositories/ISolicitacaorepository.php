@@ -17,4 +17,9 @@ interface SolicitacaoRepositoryInterface
     public function alterar(Solicitacao $solicitacao): Solicitacao;
 
     public function excluir(int $id): void;
+
+    public function buscarEmprestimoAtivoDoAluno(string $alunoId): ?Solicitacao;
+
+    /** @return Solicitacao[] */
+    public function buscarEmprestimosAtivos(): array;
 }
