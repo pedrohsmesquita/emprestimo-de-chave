@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Infrastructure\Supabase\SupabaseClient;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(SupabaseClient::class, fn () => new SupabaseClient(
+            config('supabase.url'),
+            config('supabase.key'),
+        ));
     }
 
     /**
