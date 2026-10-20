@@ -5,7 +5,7 @@ namespace App\Core\Repositories;
 use App\Core\Entities\Solicitacao;
 use App\Core\Enums\StatusSolicitacao;
 
-interface SolicitacaoRepositoryInterface
+interface ISolicitacaoRepository
 {
     public function adicionar(Solicitacao $solicitacao): Solicitacao;
 
