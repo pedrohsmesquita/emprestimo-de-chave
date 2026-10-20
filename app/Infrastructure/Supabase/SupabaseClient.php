@@ -23,4 +23,12 @@ class SupabaseClient
             ->asJson()
             ->throw();
     }
+
+    public function authRequest(): PendingRequest
+    {
+        return Http::baseUrl("{$this->url}/auth/v1")
+            ->withHeaders(['apikey' => $this->key])
+            ->acceptJson()
+            ->asJson();
+    }
 }

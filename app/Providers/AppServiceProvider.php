@@ -32,6 +32,12 @@ use App\Services\PerfilService;
 use App\Core\Services\IAlunoService;
 use App\Services\AlunoService;
 
+use App\Core\Gateways\IAuthGateway;
+use App\Core\Services\IAuthService;
+
+use App\Infrastructure\Supabase\SupabaseAuthGateway;
+use App\Services\AuthService;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -87,6 +93,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             IAlunoService::class,
             AlunoService::class
+        );
+
+        $this->app->bind(
+            IAuthGateway::class,
+            SupabaseAuthGateway::class
+        );
+        
+        $this->app->bind(
+            IAuthService::class,
+            AuthService::class
         );
     }
 
