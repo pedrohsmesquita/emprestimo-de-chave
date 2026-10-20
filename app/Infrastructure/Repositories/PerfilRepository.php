@@ -46,4 +46,16 @@ class PerfilRepository implements IPerfilRepository
             Papel::from($linha['papel']),
         );
     }
+
+    public function buscarPorPapel(Papel $papel): array
+    {
+        $linhas = $this->supabase->request()
+            ->get(self::TABELA, [
+                'papel' => "eq.{$papel->value}",
+                'order' => 'nome.asc',
+            ])
+            ->json();
+
+        return array_map(fn (array $l) => $this->mapear($l), $linhas);
+    }
 }

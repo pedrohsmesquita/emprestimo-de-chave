@@ -29,6 +29,9 @@ use App\Services\SolicitacaoService;
 use App\Core\Services\IPerfilService;
 use App\Services\PerfilService;
 
+use App\Core\Services\IAlunoService;
+use App\Services\AlunoService;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -79,6 +82,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             IPerfilService::class,
             PerfilService::class
+        );
+
+        $this->app->bind(
+            IAlunoService::class,
+            AlunoService::class
         );
     }
 
