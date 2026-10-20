@@ -17,6 +17,18 @@ use App\Infrastructure\Repositories\PerfilRepository;
 use App\Core\Repositories\ISolicitacaoRepository;
 use App\Infrastructure\Repositories\SolicitacaoRepository;
 
+use App\Core\Services\IUsuarioPermitidoService;
+use App\Services\UsuarioPermitidoService;
+
+use App\Core\Services\IChaveService;
+use App\Services\ChaveService;
+
+use App\Core\Services\ISolicitacaoService;
+use App\Services\SolicitacaoService;
+
+use App\Core\Services\IPerfilService;
+use App\Services\PerfilService;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -47,6 +59,26 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ISolicitacaoRepository::class,
             SolicitacaoRepository::class
+        );
+
+        $this->app->bind(
+            IUsuarioPermitidoService::class,
+            UsuarioPermitidoService::class
+        );
+
+        $this->app->bind(
+            IChaveService::class,
+            ChaveService::class
+        );
+
+        $this->app->bind(
+            ISolicitacaoService::class,
+            SolicitacaoService::class
+        );
+
+        $this->app->bind(
+            IPerfilService::class,
+            PerfilService::class
         );
     }
 
